@@ -5,12 +5,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (room) {
         document.getElementById("room-name").textContent = room;
 
-        // Pastikan tombol "Lihat KIR" membuka PDF di tab baru dengan link yang benar
+        // Pastikan tombol "Lihat KIR" membuka PDF dengan cara yang didukung di HP
         document.getElementById("kir-btn").addEventListener("click", function () {
             const pdfUrl = `https://opsmpn3.github.io/KIR-SMPN-3/pdfs/${room.replace(/\s/g, "_")}.pdf`;
 
-            // Buka PDF di tab baru
-            window.open(pdfUrl, "_blank");
+            // Jika di HP, gunakan window.location.href agar PDF langsung terbuka
+            if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                window.location.href = pdfUrl;
+            } else {
+                // Jika di PC, buka di tab baru
+                window.open(pdfUrl, "_blank");
+            }
         });
     }
 
