@@ -123,6 +123,22 @@ html, body {
         max-height: 90vh;
     }
 }
+/* Ukuran teks lebih kecil untuk menghemat ruang */
+.text-muted.small {
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+
+/* List dalam keterangan KIR lebih ringkas */
+.text-muted.small ul {
+    font-size: 0.8rem;
+    padding-left: 15px;
+}
+
+/* Ikon lebih kecil agar tidak mendominasi */
+.text-muted.small i {
+    font-size: 0.9rem;
+}
 
     </style>
 </head>
@@ -140,20 +156,17 @@ html, body {
         <!-- Garis Pembatas -->
         <hr class="divider mx-auto">
 
-        <!-- Card Penjelasan KIR -->
-<div class="card explanation-card border-0 shadow-sm p-3 mb-3">
-    <div class="card-body">
-        <h5 class="fw-bold text-primary">
-            <i class="fa-solid fa-book-open"></i> Apa Itu KIR?
-        </h5>
-        <p class="mb-2">Kartu Inventaris Ruangan (KIR) adalah dokumen yang mencatat semua aset dan fasilitas dalam suatu ruangan untuk memastikan pengelolaan barang yang baik.</p>
-        <h6 class="text-secondary fw-bold"><i class="fa-solid fa-scale-balanced"></i> Dasar Hukum:</h6>
-        <ul class="mb-0">
-            <li><b>Peraturan Pemerintah No. 27 Tahun 2014</b> tentang Pengelolaan Barang Milik Negara/Daerah</li>
-            <li><b>Peraturan Menteri Keuangan No. 181/PMK.06/2016</b> tentang Penatausahaan Barang Milik Negara</li>
-        </ul>
-    </div>
+        <!-- Keterangan KIR dengan teks lebih kecil -->
+<div class="text-start text-muted small mb-3">
+    <p class="mb-1"><i class="fa-solid fa-book-open text-primary"></i> <b>Apa Itu KIR?</b></p>
+    <p class="mb-1">Kartu Inventaris Ruangan (KIR) adalah dokumen pencatatan aset dan fasilitas dalam suatu ruangan untuk memastikan pengelolaan barang yang baik.</p>
+    <p class="mb-1"><i class="fa-solid fa-scale-balanced text-secondary"></i> <b>Dasar Hukum:</b></p>
+    <ul class="mb-0 ps-3">
+        <li>PP No. 27 Tahun 2014 tentang Pengelolaan Barang Milik Negara/Daerah</li>
+        <li>PMK No. 181/PMK.06/2016 tentang Penatausahaan Barang Milik Negara</li>
+    </ul>
 </div>
+
 
 
         <!-- Menu tombol -->
