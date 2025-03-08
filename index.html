@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Ruangan</title>
+    <title>Kartu Inventaris Ruangan</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1 id="room-name">Ruangan Tidak Dikenal</h1>
+        <!-- Logo -->
+        <img src="assets/logo.png" alt="Logo Sekolah" class="logo">
 
-        <!-- Card Informasi -->
-        <div class="info-card">
-            <h2>Informasi KIR</h2>
-            <p>KIR adalah dokumen yang menunjukkan hasil inspeksi ruangan ini.</p>
-        </div>
+        <!-- Judul Utama -->
+        <h1>Kartu Inventaris Ruangan</h1>
+        <h2 id="room-name">Ruangan Tidak Dikenal</h2>
 
-        <div class="info-card">
-            <h2>Informasi Perawatan</h2>
-            <p>Gunakan menu perawatan untuk melaporkan kondisi ruangan.</p>
+        <!-- Garis Pembatas -->
+        <hr class="divider">
+
+        <!-- Papan Informasi -->
+        <div class="info-board">
+            <div class="info-card">
+                <h3>📄 Informasi KIR</h3>
+                <p>Kartu Inventaris Ruangan berisi daftar aset dan fasilitas yang tersedia di ruangan ini.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>🛠️ Informasi Perawatan</h3>
+                <p>Laporkan jika ada fasilitas yang perlu diperbaiki atau diganti melalui tombol perawatan.</p>
+            </div>
         </div>
 
         <!-- Menu tombol -->
@@ -36,6 +46,11 @@
             <iframe id="pdf-viewer"></iframe>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SMPN 3 | Kartu Inventaris Ruangan</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
