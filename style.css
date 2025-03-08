@@ -5,38 +5,45 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Pastikan konten selalu di tengah layar */
 }
 
 /* Container utama */
 .container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    padding: 15px;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Logo */
 .logo {
-    width: 80px;
+    width: 70px;
     display: block;
     margin: 0 auto 10px;
 }
 
 /* Judul utama */
 h1 {
-    font-size: 24px;
+    font-size: 22px;
     color: #333;
     margin-bottom: 5px;
+    font-weight: 600;
 }
 
 /* Subjudul (nama ruangan) */
 h2 {
-    font-size: 20px;
+    font-size: 18px;
     color: #666;
     margin-bottom: 15px;
+    font-weight: 500;
 }
 
 /* Garis pembatas */
@@ -44,7 +51,7 @@ h2 {
     border: none;
     height: 2px;
     background: #ddd;
-    margin: 15px auto;
+    margin: 10px auto;
     width: 80%;
 }
 
@@ -52,37 +59,43 @@ h2 {
 .info-board {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 /* Informasi KIR & Perawatan */
 .info-card {
     background: #ffffff;
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 8px 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+.info-card:hover {
+    transform: scale(1.02);
 }
 
 /* Menu tombol */
 .menu-buttons {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 /* Desain tombol */
 button {
     width: 100%;
-    padding: 14px;
-    font-size: 18px;
+    padding: 12px;
+    font-size: 16px;
     font-weight: 600;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Warna tombol */
@@ -91,7 +104,7 @@ button {
 }
 #kir-btn:hover {
     background: #0056b3;
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
 
 #maintenance-btn {
@@ -99,14 +112,32 @@ button {
 }
 #maintenance-btn:hover {
     background: #1e7e34;
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
 
-/* Footer */
-footer {
-    margin-top: 30px;
-    padding: 15px;
-    background: #333;
-    color: white;
-    font-size: 14px;
+/* Animasi smooth untuk hover efek */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Responsif untuk ponsel */
+@media (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        padding: 0;
+    }
+    .container {
+        width: 90%;
+        max-width: 360px;
+        padding: 12px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    h2 {
+        font-size: 16px;
+    }
+    button {
+        font-size: 14px;
+    }
 }
