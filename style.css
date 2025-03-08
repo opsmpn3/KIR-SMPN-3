@@ -1,35 +1,42 @@
-/* Gunakan font Poppins */
+/* Gunakan font modern */
 body {
     font-family: 'Poppins', sans-serif;
 }
 
 /* Container utama */
-.container {
+.container-custom {
     max-width: 400px;
     width: 90%;
-    padding: 15px;
+    padding: 20px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 /* Logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .logo {
-    width: 65px;
-    display: block;
-    margin: 0 auto 10px;
+    width: 70px;
+    animation: fadeInDown 0.6s ease-in-out;
 }
 
 /* Judul */
 h1 {
-    font-size: 20px;
-    color: #333;
+    font-size: 22px;
+    color: #007bff;
     font-weight: 700;
 }
 
 h2 {
-    font-size: 14px;
+    font-size: 15px;
     color: #666;
     font-weight: 500;
 }
@@ -42,19 +49,56 @@ h2 {
 }
 
 /* Card informasi */
-.card {
+.info-card {
     font-size: 14px;
     border-left: 5px solid #007bff;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.info-card:hover {
+    transform: scale(1.02);
 }
 
 /* Tombol */
 .btn {
     font-size: 14px;
     font-weight: 600;
-    padding: 10px;
+    padding: 12px;
     transition: all 0.3s ease-in-out;
+    border-radius: 8px;
 }
 
 .btn:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsif untuk ponsel */
+@media (max-width: 768px) {
+    .container-custom {
+        width: 92%;
+        max-width: 360px;
+        padding: 16px;
+    }
+    h1 {
+        font-size: 18px;
+    }
+    h2 {
+        font-size: 14px;
+    }
+    .btn {
+        font-size: 13px;
+        padding: 10px;
+    }
 }
