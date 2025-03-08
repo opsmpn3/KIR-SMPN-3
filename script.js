@@ -27,6 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("maintenance-btn").addEventListener("click", function () {
-        window.location.href = "https://forms.google.com/perawatan";
+        window.location.href = "https://forms.gle/8fNkuxBEJfP9j46W9";
     });
 });
