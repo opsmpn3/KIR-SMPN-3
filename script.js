@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (room) {
         document.getElementById("room-name").textContent = room;
 
-        // Tombol "Lihat KIR" untuk membuka modal PDF
+        // Tombol "Lihat KIR" untuk membuka PDF fullscreen
         document.getElementById("kir-btn").addEventListener("click", function () {
             const pdfViewer = document.getElementById("pdf-viewer");
             pdfViewer.src = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
 
-            // Tampilkan modal PDF dengan fullscreen
-            document.getElementById("pdf-modal").style.display = "flex";
+            // Tampilkan PDF fullscreen
+            document.getElementById("pdf-container").style.display = "block";
             document.body.style.overflow = "hidden"; // Mencegah scroll di background
         });
     }
@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "https://forms.google.com/perawatan"; // Ganti dengan link Google Form
     });
 
-    // Tombol untuk menutup modal PDF
-    document.getElementById("close-modal").addEventListener("click", function () {
-        document.getElementById("pdf-modal").style.display = "none";
+    // Klik di luar PDF untuk menutup tampilan fullscreen
+    document.getElementById("pdf-container").addEventListener("click", function () {
+        document.getElementById("pdf-container").style.display = "none";
         document.body.style.overflow = "auto"; // Kembalikan scroll saat modal ditutup
     });
 });
