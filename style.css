@@ -20,7 +20,7 @@ body {
 
 /* Judul ruangan */
 h1 {
-    font-size: 24px;
+    font-size: 26px;
     color: #333;
     margin-bottom: 20px;
 }
@@ -35,14 +35,14 @@ h1 {
 /* Desain tombol */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     font-size: 18px;
     font-weight: 600;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Warna tombol KIR */
@@ -51,6 +51,7 @@ button {
 }
 #kir-btn:hover {
     background: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Warna tombol Perawatan */
@@ -59,16 +60,43 @@ button {
 }
 #maintenance-btn:hover {
     background: #1e7e34;
+    transform: scale(1.05);
 }
 
 /* Area tampilan PDF (disembunyikan dulu) */
 #pdf-container {
     margin-top: 20px;
     display: none;
+    text-align: center;
 }
+
+/* Tampilan PDF */
 iframe {
+    width: 100%;
+    max-width: 100%;
+    height: 80vh; /* Sesuaikan tinggi PDF agar optimal */
     border: 1px solid #ccc;
     border-radius: 8px;
+    object-fit: contain;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Tombol Full Screen */
+#fullscreen-btn {
+    display: none;
+    margin: 15px auto;
+    padding: 10px 15px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#fullscreen-btn:hover {
+    background: #e68900;
 }
 
 /* Responsif untuk ponsel */
@@ -78,9 +106,15 @@ iframe {
         margin-top: 30px;
     }
     h1 {
-        font-size: 20px;
+        font-size: 22px;
     }
     button {
         font-size: 16px;
+    }
+    iframe {
+        height: 60vh; /* Kurangi tinggi agar pas di mode portrait */
+    }
+    #fullscreen-btn {
+        display: block;
     }
 }
