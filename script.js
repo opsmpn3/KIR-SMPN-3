@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (room) {
         document.getElementById("room-name").textContent = room;
 
-        // Ketika tombol KIR diklik, tampilkan PDF di dalam halaman
+        // Ketika tombol KIR diklik, tampilkan PDF
         document.getElementById("kir-btn").addEventListener("click", function () {
             const pdfViewer = document.getElementById("pdf-viewer");
             pdfViewer.src = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
