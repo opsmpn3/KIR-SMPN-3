@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (room) {
         document.getElementById("room-name").textContent = room;
 
-        // Ketika tombol KIR diklik, buka PDF di tab baru seperti Google Drive
+        // Pastikan tombol "Lihat KIR" membuka PDF di tab baru dengan link yang benar
         document.getElementById("kir-btn").addEventListener("click", function () {
-            const pdfUrl = `${location.origin}/pdfs/${room.replace(/\s/g, "_")}.pdf`;
+            const pdfUrl = `https://opsmpn3.github.io/KIR-SMPN-3/pdfs/${room.replace(/\s/g, "_")}.pdf`;
 
-            // Langsung buka tab baru untuk pengalaman Google Drive PDF Viewer
+            // Buka PDF di tab baru
             window.open(pdfUrl, "_blank");
         });
     }
