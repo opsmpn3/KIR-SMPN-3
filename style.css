@@ -15,17 +15,47 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-/* Judul ruangan */
+/* Logo */
+.logo {
+    width: 80px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Judul utama */
 h1 {
-    font-size: 26px;
+    font-size: 24px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
-/* Card Informasi */
+/* Subjudul (nama ruangan) */
+h2 {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Garis pembatas */
+.divider {
+    border: none;
+    height: 2px;
+    background: #ddd;
+    margin: 15px auto;
+    width: 80%;
+}
+
+/* Papan Informasi */
+.info-board {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Informasi KIR & Perawatan */
 .info-card {
     background: #ffffff;
     padding: 15px;
@@ -39,6 +69,7 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-top: 20px;
 }
 
 /* Desain tombol */
@@ -54,7 +85,7 @@ button {
     transition: all 0.3s ease-in-out;
 }
 
-/* Warna tombol KIR */
+/* Warna tombol */
 #kir-btn {
     background: #007bff;
 }
@@ -63,7 +94,6 @@ button {
     transform: scale(1.05);
 }
 
-/* Warna tombol Perawatan */
 #maintenance-btn {
     background: #28a745;
 }
@@ -80,7 +110,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(10px); /* Efek blur */
+    backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
@@ -96,18 +126,6 @@ button {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Tombol Tutup Modal */
-#close-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-    color: red;
-    font-weight: bold;
 }
 
 /* Iframe PDF */
@@ -117,14 +135,25 @@ button {
     border: none;
 }
 
-/* Responsif untuk ponsel */
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 15px;
+    background: #333;
+    color: white;
+    font-size: 14px;
+}
+
+/* Responsif */
 @media (max-width: 768px) {
     .container {
         width: 90%;
-        margin-top: 30px;
     }
     h1 {
         font-size: 22px;
+    }
+    h2 {
+        font-size: 18px;
     }
     button {
         font-size: 16px;
