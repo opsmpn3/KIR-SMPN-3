@@ -8,31 +8,36 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Pastikan konten selalu di tengah layar */
+    height: 100vh; /* Pastikan konten selalu pas di layar */
+    overflow: hidden; /* Hapus scroll */
 }
 
 /* Container utama */
 .container {
     max-width: 400px;
     width: 90%;
-    padding: 15px;
+    padding: 10px;
     background: white;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Posisikan tengah */
+    height: 95vh; /* Batasi tinggi agar tidak scroll */
+    box-sizing: border-box;
 }
 
 /* Logo */
 .logo {
-    width: 70px;
+    width: 60px;
     display: block;
-    margin: 0 auto 10px;
+    margin: 0 auto 8px;
 }
 
 /* Judul utama */
 h1 {
-    font-size: 22px;
+    font-size: 20px;
     color: #333;
     margin-bottom: 5px;
     font-weight: 600;
@@ -40,16 +45,16 @@ h1 {
 
 /* Subjudul (nama ruangan) */
 h2 {
-    font-size: 18px;
+    font-size: 16px;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-weight: 500;
 }
 
 /* Garis pembatas */
 .divider {
     border: none;
-    height: 2px;
+    height: 1.5px;
     background: #ddd;
     margin: 10px auto;
     width: 80%;
@@ -59,16 +64,17 @@ h2 {
 .info-board {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 /* Informasi KIR & Perawatan */
 .info-card {
     background: #ffffff;
-    padding: 12px;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 8px 0;
+    margin: 5px 0;
+    font-size: 14px;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -80,15 +86,15 @@ h2 {
 .menu-buttons {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
 /* Desain tombol */
 button {
     width: 100%;
     padding: 12px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: white;
     border: none;
@@ -123,21 +129,23 @@ button:active {
 /* Responsif untuk ponsel */
 @media (max-width: 768px) {
     body {
-        min-height: 100vh;
+        height: 100vh; /* Pastikan body pas di layar HP */
         padding: 0;
     }
     .container {
-        width: 90%;
-        max-width: 360px;
-        padding: 12px;
+        width: 95%;
+        max-width: 350px;
+        padding: 8px;
+        height: 90vh; /* Batasi tinggi agar tidak scroll */
     }
     h1 {
-        font-size: 20px;
+        font-size: 18px;
     }
     h2 {
-        font-size: 16px;
+        font-size: 14px;
     }
     button {
-        font-size: 14px;
+        font-size: 12px;
+        padding: 10px;
     }
 }
