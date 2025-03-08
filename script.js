@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (room) {
         document.getElementById("room-name").textContent = room;
 
-        // Ketika tombol KIR diklik, buka PDF dengan Google Drive Viewer
+        // Ketika tombol KIR diklik, buka PDF di tab baru seperti Google Drive
         document.getElementById("kir-btn").addEventListener("click", function () {
-            const pdfUrl = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
+            const pdfUrl = `${location.origin}/pdfs/${room.replace(/\s/g, "_")}.pdf`;
 
-            // Gunakan Google Drive Viewer untuk tampilan lebih smooth
-            window.open(`https://drive.google.com/viewerng/viewer?embedded=true&url=${location.origin}/${pdfUrl}`, "_blank");
+            // Langsung buka tab baru untuk pengalaman Google Drive PDF Viewer
+            window.open(pdfUrl, "_blank");
         });
     }
 
