@@ -4,42 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kartu Inventaris Ruangan</title>
-    
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Mengatur ukuran container agar tidak terlalu besar di layar kecil */
+        .container-custom {
+            max-width: 400px; /* Agar tidak terlalu melebar di layar besar */
+            width: 90%;
+        }
+
+        /* Gaya untuk logo agar responsif */
+        .logo-container img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        /* Divider dengan efek gradient */
+        .divider {
+            height: 3px;
+            background: linear-gradient(to right, #0d6efd, #6c757d);
+            border: none;
+            width: 60%;
+        }
+
+        /* Efek hover untuk tombol */
+        .btn:hover {
+            transform: scale(1.05);
+            transition: 0.3s ease-in-out;
+        }
+
+        /* Kartu informasi lebih soft */
+        .info-card {
+            background-color: #f8f9fa;
+            border-left: 5px solid #0d6efd;
+        }
+
+        /* Kartu Informasi dengan Border Gradient */
+.info-card {
+    background: #f8f9fa; /* Warna latar belakang soft */
+    border-left: 5px solid transparent;
+    border-image: linear-gradient(to bottom, #0d6efd, #198754);
+    border-image-slice: 1;
+}
+
+/* Ikon lebih besar dan elegan */
+.icon-container i {
+    font-size: 1.8rem; /* Ukuran ikon lebih besar */
+}
+
+/* Garis divider yang stylish */
+.divider {
+    height: 2px;
+    background: linear-gradient(to right, #0d6efd, #198754);
+    border: none;
+    width: 100%;
+}
+
+    </style>
 </head>
 <body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
     
     <div class="container-custom text-center bg-white p-4 rounded shadow-lg">
         <!-- Logo -->
-        <div class="logo-container">
-            <img src="assets/logosnega.png" alt="Logo Sekolah" class="logo">
+        <div class="logo-container mb-3">
+            <img src="assets/logosnega.png" alt="Logo Sekolah" class="img-fluid">
         </div>
 
         <!-- Judul Utama -->
-        <h1 class="fs-4 fw-bold text-primary">Kartu Inventaris Ruangan</h1>
+        <h1 class="fs-5 fw-bold text-primary">Kartu Inventaris Ruangan</h1>
         <h2 id="room-name" class="fs-6 text-muted mb-3">Ruangan Tidak Dikenal</h2>
 
         <!-- Garis Pembatas -->
         <hr class="divider mx-auto">
 
-        <!-- Informasi KIR & Perawatan (1 Card) -->
-        <div class="card border-0 shadow-sm p-3 mb-3 info-card">
-            <div class="card-body text-start">
-                <p class="mb-2"><i class="fa-solid fa-file-invoice text-primary"></i> <b>KIR:</b> Berisi daftar aset & fasilitas di ruangan ini.</p>
-                <p class="mb-0"><i class="fa-solid fa-screwdriver-wrench text-success"></i> <b>Perawatan:</b> Laporkan jika ada fasilitas yang rusak.</p>
+  <!-- Menu tombol -->
+<div class="d-grid gap-3">
+    <button id="kir-btn" class="btn btn-primary shadow-sm"><i class="fa-solid fa-file-pdf"></i> Lihat KIR</button>
+    <button id="maintenance-btn" class="btn btn-success shadow-sm"><i class="fa-solid fa-wrench"></i> Perawatan</button>
+    <button type="button" class="btn btn-info shadow-sm" data-bs-toggle="modal" data-bs-target="#infoModal">
+        <i class="fa-solid fa-circle-info"></i> Informasi
+    </button>
+</div>
+
+<!-- Modal Informasi -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="infoModalLabel">
+                    <i class="fa-solid fa-info-circle text-primary"></i> Informasi KIR & Perawatan
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- KIR Section -->
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-container me-3">
+                        <i class="fa-solid fa-file-invoice text-primary"></i>
+                    </div>
+                    <div>
+                        <p class="mb-1"><b>KIR:</b> Berisi daftar aset & fasilitas di ruangan ini.</p>
+                    </div>
+                </div>
+
+                <!-- Perawatan Section -->
+                <div class="d-flex align-items-center">
+                    <div class="icon-container me-3">
+                        <i class="fa-solid fa-screwdriver-wrench text-success"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0"><b>Perawatan:</b> Laporkan jika ada fasilitas yang rusak.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
-
-        <!-- Menu tombol -->
-        <div class="d-grid gap-3">
-            <button id="kir-btn" class="btn btn-primary shadow-sm"><i class="fa-solid fa-file-pdf"></i> Lihat KIR</button>
-            <button id="maintenance-btn" class="btn btn-success shadow-sm"><i class="fa-solid fa-wrench"></i> Perawatan</button>
-        </div>
     </div>
+</div>
 
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
