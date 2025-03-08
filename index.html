@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Ruangan</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 id="room-name">Ruangan Tidak Dikenal</h1>
-    <button id="kir-btn">Lihat KIR</button>
-    <button id="maintenance-btn">Perawatan</button>
+    <div class="container">
+        <h1 id="room-name">Ruangan Tidak Dikenal</h1>
+        <div class="menu-buttons">
+            <button id="kir-btn">📄 Lihat KIR</button>
+            <button id="maintenance-btn">🛠️ Perawatan</button>
+        </div>
 
-    <!-- Area untuk menampilkan PDF -->
-    <div id="pdf-container" style="display: none;">
-        <iframe id="pdf-viewer" width="80%" height="500px"></iframe>
+        <!-- Area untuk menampilkan PDF -->
+        <div id="pdf-container">
+            <iframe id="pdf-viewer" width="100%" height="500px"></iframe>
+        </div>
     </div>
 
     <script src="script.js"></script>
