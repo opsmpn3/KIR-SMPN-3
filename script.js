@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const pdfViewer = document.getElementById("pdf-viewer");
             pdfViewer.src = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
 
+            // Tampilkan modal PDF dengan efek blur
             document.getElementById("pdf-modal").style.display = "flex";
         });
     }
