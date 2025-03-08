@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Kartu Inventaris Ruangan</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -37,12 +37,9 @@
             <button id="kir-btn">📄 Lihat KIR</button>
             <button id="maintenance-btn">🛠️ Perawatan</button>
         </div>
-    </div>
 
-    <!-- Modal PDF dengan efek blur -->
-    <div id="pdf-modal">
-        <div class="modal-content">
-            <span id="close-modal">&times;</span>
+        <!-- Area PDF -->
+        <div id="pdf-container">
             <iframe id="pdf-viewer"></iframe>
         </div>
     </div>
