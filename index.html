@@ -8,24 +8,24 @@
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
     <!-- Custom CSS -->
     <style>
-    /* ===== Pastikan Body Tidak Ada Scroll & Proporsional ===== */
-body {
-    height: 100vh; /* Mengisi seluruh tinggi layar */
-    overflow: hidden; /* Mencegah scroll */
+        /* ===== Pastikan Body Tidak Ada Scroll & Proporsional ===== */
+html, body {
+    height: 100vh; /* Pastikan body memenuhi layar penuh */
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #f8f9fa;
     padding: 0;
     margin: 0;
+    overflow: hidden; /* Mencegah scroll */
 }
 
 /* ===== Container Utama ===== */
 .container-custom {
-    max-width: 420px; /* Lebih optimal di layar kecil */
+    max-width: 420px;
     width: 90%;
     background: #ffffff;
     border-radius: 12px;
@@ -33,37 +33,52 @@ body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* ===== Divider ===== */
+.divider {
+    height: 3px;
+    background: linear-gradient(to right, #0d6efd, #198754);
+    border: none;
+    width: 70%;
+    margin: 10px auto;
+    opacity: 0.8;
+}
+
+/* ===== Card Penjelasan KIR ===== */
+.explanation-card {
+    background: #f8f9fa;
+    border-left: 5px solid #0d6efd;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+/* Ikon dalam card lebih menonjol */
+.explanation-card h5 i,
+.explanation-card h6 i {
+    color: #0d6efd;
+    margin-right: 5px;
+}
+
+/* List dalam card lebih rapi */
+.explanation-card ul {
+    padding-left: 20px;
+    font-size: 0.9rem;
+}
+
 /* ===== Styling Modal Informasi ===== */
+.modal-dialog {
+    max-width: 90%;
+    max-height: 90vh; /* Batasi tinggi modal agar tidak keluar layar */
+}
+
 .modal-content {
     border-radius: 12px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.modal-header {
-    border-bottom: 2px solid #f1f1f1;
-    padding: 15px 20px;
-}
-
-.modal-body {
-    text-align: left; /* Agar teks lebih rapi */
-    padding: 20px;
-}
-
-/* Atur spacing untuk elemen dalam modal */
-.modal-body .d-flex {
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.modal-body p {
-    margin-bottom: 0;
-    font-size: 1rem;
-    line-height: 1.4;
-}
-
-.modal-footer {
-    border-top: 2px solid #f1f1f1;
-    padding: 15px 20px;
+.modal-header, .modal-footer {
+    border-color: #f1f1f1;
 }
 
 /* ===== Ikon dalam Modal Informasi ===== */
@@ -89,17 +104,8 @@ body {
         padding: 15px;
     }
 
-    .logo-container img {
-        max-width: 70px;
-    }
-
-    .divider {
-        width: 90%;
-    }
-
-    .btn {
+    .explanation-card {
         font-size: 0.9rem;
-        padding: 10px;
     }
 
     .icon-container {
@@ -111,16 +117,16 @@ body {
         font-size: 1.3rem;
     }
 
-    .modal-body {
-        padding: 15px;
+    /* Pastikan modal tidak keluar layar di ponsel */
+    .modal-dialog {
+        max-width: 95%;
+        max-height: 90vh;
     }
 }
 
-
     </style>
 </head>
-<body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-    
+<body>
     <div class="container-custom text-center bg-white p-4 rounded shadow-lg">
         <!-- Logo -->
         <div class="logo-container mb-3">
@@ -134,56 +140,71 @@ body {
         <!-- Garis Pembatas -->
         <hr class="divider mx-auto">
 
-  <!-- Menu tombol -->
-<div class="d-grid gap-3">
-    <button id="kir-btn" class="btn btn-primary shadow-sm"><i class="fa-solid fa-file-pdf"></i> Lihat KIR</button>
-    <button id="maintenance-btn" class="btn btn-success shadow-sm"><i class="fa-solid fa-wrench"></i> Perawatan</button>
-    <button type="button" class="btn btn-info shadow-sm" data-bs-toggle="modal" data-bs-target="#infoModal">
-        <i class="fa-solid fa-circle-info"></i> Informasi
-    </button>
-</div>
-
-<!-- Modal Informasi -->
-<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="infoModalLabel">
-                    <i class="fa-solid fa-info-circle text-primary"></i> Informasi KIR & Perawatan
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- KIR Section -->
-                <div class="d-flex">
-                    <div class="icon-container me-3">
-                        <i class="fa-solid fa-file-invoice"></i>
-                    </div>
-                    <div>
-                        <p><b>KIR:</b> Berisi daftar aset & fasilitas di ruangan ini.</p>
-                    </div>
-                </div>
-
-                <!-- Perawatan Section -->
-                <div class="d-flex">
-                    <div class="icon-container me-3">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
-                    </div>
-                    <div>
-                        <p><b>Perawatan:</b> Laporkan jika ada fasilitas yang rusak.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            </div>
-        </div>
+        <!-- Card Penjelasan KIR -->
+<div class="card explanation-card border-0 shadow-sm p-3 mb-3">
+    <div class="card-body">
+        <h5 class="fw-bold text-primary">
+            <i class="fa-solid fa-book-open"></i> Apa Itu KIR?
+        </h5>
+        <p class="mb-2">Kartu Inventaris Ruangan (KIR) adalah dokumen yang mencatat semua aset dan fasilitas dalam suatu ruangan untuk memastikan pengelolaan barang yang baik.</p>
+        <h6 class="text-secondary fw-bold"><i class="fa-solid fa-scale-balanced"></i> Dasar Hukum:</h6>
+        <ul class="mb-0">
+            <li><b>Peraturan Pemerintah No. 27 Tahun 2014</b> tentang Pengelolaan Barang Milik Negara/Daerah</li>
+            <li><b>Peraturan Menteri Keuangan No. 181/PMK.06/2016</b> tentang Penatausahaan Barang Milik Negara</li>
+        </ul>
     </div>
 </div>
 
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+        <!-- Menu tombol -->
+        <div class="d-grid gap-3">
+            <button id="kir-btn" class="btn btn-primary shadow-sm"><i class="fa-solid fa-file-pdf"></i> Lihat KIR</button>
+            <button id="maintenance-btn" class="btn btn-success shadow-sm"><i class="fa-solid fa-wrench"></i> Perawatan</button>
+            <button type="button" class="btn btn-info shadow-sm" data-bs-toggle="modal" data-bs-target="#infoModal">
+                <i class="fa-solid fa-circle-info"></i> Informasi
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Informasi -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="infoModalLabel">
+                        <i class="fa-solid fa-info-circle text-primary"></i> Informasi KIR & Perawatan
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- KIR Section -->
+                    <div class="d-flex mb-3">
+                        <div class="icon-container me-3">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <div>
+                            <p><b>KIR:</b> Berisi daftar aset & fasilitas di ruangan ini.</p>
+                        </div>
+                    </div>
+
+                    <!-- Perawatan Section -->
+                    <div class="d-flex">
+                        <div class="icon-container me-3">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <div>
+                            <p><b>Perawatan:</b> Laporkan jika ada fasilitas yang rusak.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
