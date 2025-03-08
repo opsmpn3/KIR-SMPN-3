@@ -5,11 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (room) {
         document.getElementById("room-name").textContent = room;
 
-        // Ketika tombol KIR diklik, tampilkan PDF
+        // Tombol "Lihat KIR" untuk membuka modal PDF
         document.getElementById("kir-btn").addEventListener("click", function () {
             const pdfViewer = document.getElementById("pdf-viewer");
             pdfViewer.src = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
-            document.getElementById("pdf-container").style.display = "block";
+
+            document.getElementById("pdf-modal").style.display = "flex";
         });
     }
 
@@ -18,16 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "https://forms.google.com/perawatan"; // Ganti dengan link Google Form
     });
 
-    // Tambahkan fitur full screen
-    document.getElementById("pdf-viewer").addEventListener("click", function () {
-        if (this.requestFullscreen) {
-            this.requestFullscreen();
-        } else if (this.mozRequestFullScreen) {
-            this.mozRequestFullScreen();
-        } else if (this.webkitRequestFullscreen) {
-            this.webkitRequestFullscreen();
-        } else if (this.msRequestFullscreen) {
-            this.msRequestFullscreen();
-        }
+    // Tombol untuk menutup modal PDF
+    document.getElementById("close-modal").addEventListener("click", function () {
+        document.getElementById("pdf-modal").style.display = "none";
     });
 });
