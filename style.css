@@ -14,7 +14,7 @@ body {
 
 /* Container utama */
 .container {
-    max-width: 400px;
+    max-width: 380px;
     width: 90%;
     padding: 10px;
     background: white;
@@ -23,31 +23,31 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Posisikan tengah */
-    height: 95vh; /* Batasi tinggi agar tidak scroll */
+    justify-content: center;
+    height: 85vh; /* Batasi tinggi agar tidak scroll */
     box-sizing: border-box;
 }
 
 /* Logo */
 .logo {
-    width: 60px;
+    width: 55px;
     display: block;
     margin: 0 auto 8px;
 }
 
 /* Judul utama */
 h1 {
-    font-size: 20px;
+    font-size: 18px;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     font-weight: 600;
 }
 
 /* Subjudul (nama ruangan) */
 h2 {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 500;
 }
 
@@ -56,30 +56,27 @@ h2 {
     border: none;
     height: 1.5px;
     background: #ddd;
-    margin: 10px auto;
+    margin: 8px auto;
     width: 80%;
 }
 
-/* Papan Informasi */
-.info-board {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-/* Informasi KIR & Perawatan */
+/* Informasi KIR & Perawatan (Satu Card) */
 .info-card {
     background: #ffffff;
-    padding: 10px;
+    padding: 8px;
     border-radius: 8px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 5px 0;
-    font-size: 14px;
-    transition: transform 0.2s ease-in-out;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 4px;
 }
 
-.info-card:hover {
-    transform: scale(1.02);
+.info-card i {
+    color: #007bff;
+    margin-right: 6px;
 }
 
 /* Menu tombol */
@@ -93,15 +90,15 @@ h2 {
 /* Desain tombol */
 button {
     width: 100%;
-    padding: 12px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 12px;
     font-weight: 600;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Warna tombol */
@@ -129,23 +126,23 @@ button:active {
 /* Responsif untuk ponsel */
 @media (max-width: 768px) {
     body {
-        height: 100vh; /* Pastikan body pas di layar HP */
+        height: 100vh;
         padding: 0;
     }
     .container {
-        width: 95%;
-        max-width: 350px;
+        width: 92%;
+        max-width: 330px;
         padding: 8px;
-        height: 90vh; /* Batasi tinggi agar tidak scroll */
+        height: 80vh; /* Batasi tinggi agar tidak scroll */
     }
     h1 {
-        font-size: 18px;
+        font-size: 16px;
     }
     h2 {
-        font-size: 14px;
+        font-size: 13px;
     }
     button {
-        font-size: 12px;
-        padding: 10px;
+        font-size: 11px;
+        padding: 9px;
     }
 }
