@@ -17,4 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("maintenance-btn").addEventListener("click", function () {
         window.location.href = "https://forms.google.com/perawatan"; // Ganti dengan link Google Form
     });
+
+    // Tambahkan fitur full screen
+    document.getElementById("pdf-viewer").addEventListener("click", function () {
+        if (this.requestFullscreen) {
+            this.requestFullscreen();
+        } else if (this.mozRequestFullScreen) {
+            this.mozRequestFullScreen();
+        } else if (this.webkitRequestFullscreen) {
+            this.webkitRequestFullscreen();
+        } else if (this.msRequestFullscreen) {
+            this.msRequestFullscreen();
+        }
+    });
 });
