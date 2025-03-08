@@ -102,46 +102,11 @@ button {
     transform: scale(1.05);
 }
 
-/* Tampilan PDF Fullscreen */
-#pdf-container {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: white;
-    z-index: 9999;
-}
-
-/* Pastikan PDF fullscreen & tidak ada scroll horizontal */
-#pdf-viewer {
-    width: 100vw;
-    height: 100vh;
-    border: none;
-    object-fit: contain;
-}
-
-/* Responsif */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-    h1 {
-        font-size: 22px;
-    }
-    h2 {
-        font-size: 18px;
-    }
-    button {
-        font-size: 16px;
-    }
-    #pdf-container {
-        width: 100vw;
-        height: 100vh;
-    }
-    #pdf-viewer {
-        width: 100vw;
-        height: 100vh;
-    }
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 15px;
+    background: #333;
+    color: white;
+    font-size: 14px;
 }
