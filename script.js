@@ -4,17 +4,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (room) {
         document.getElementById("room-name").textContent = room;
+
+        // Tombol "Lihat KIR" untuk membuka modal PDF
         document.getElementById("kir-btn").addEventListener("click", function () {
-            document.getElementById("pdf-viewer").src = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
+            const pdfViewer = document.getElementById("pdf-viewer");
+            pdfViewer.src = `pdfs/${room.replace(/\s/g, "_")}.pdf`;
+
+            // Tampilkan modal PDF dengan fullscreen
             document.getElementById("pdf-modal").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Mencegah scroll di background
         });
     }
 
+    // Tombol Perawatan (Google Form - link sama untuk semua)
     document.getElementById("maintenance-btn").addEventListener("click", function () {
-        window.location.href = "https://forms.google.com/perawatan";
+        window.location.href = "https://forms.google.com/perawatan"; // Ganti dengan link Google Form
     });
 
+    // Tombol untuk menutup modal PDF
     document.getElementById("close-modal").addEventListener("click", function () {
         document.getElementById("pdf-modal").style.display = "none";
+        document.body.style.overflow = "auto"; // Kembalikan scroll saat modal ditutup
     });
 });
