@@ -11,7 +11,7 @@
     
     <!-- Custom CSS -->
     <style>
-      /* ===== Pastikan Body Tidak Ada Scroll ===== */
+    /* ===== Pastikan Body Tidak Ada Scroll & Proporsional ===== */
 body {
     height: 100vh; /* Mengisi seluruh tinggi layar */
     overflow: hidden; /* Mencegah scroll */
@@ -19,8 +19,8 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #f8f9fa;
-    padding: 0; /* Menghindari padding yang berlebihan */
-    margin: 0; /* Reset margin */
+    padding: 0;
+    margin: 0;
 }
 
 /* ===== Container Utama ===== */
@@ -33,11 +33,60 @@ body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Atur Padding Proporsional pada Semua Ukuran ===== */
+/* ===== Styling Modal Informasi ===== */
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    border-bottom: 2px solid #f1f1f1;
+    padding: 15px 20px;
+}
+
+.modal-body {
+    text-align: left; /* Agar teks lebih rapi */
+    padding: 20px;
+}
+
+/* Atur spacing untuk elemen dalam modal */
+.modal-body .d-flex {
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-body p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.modal-footer {
+    border-top: 2px solid #f1f1f1;
+    padding: 15px 20px;
+}
+
+/* ===== Ikon dalam Modal Informasi ===== */
+.icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 110, 253, 0.1);
+    border-radius: 50%;
+}
+
+.icon-container i {
+    font-size: 1.5rem;
+    color: #0d6efd;
+}
+
+/* ===== Responsiveness untuk Ponsel ===== */
 @media (max-width: 480px) {
     .container-custom {
         max-width: 95%;
-        padding: 15px; /* Padding lebih kecil agar tidak terlalu penuh */
+        padding: 15px;
     }
 
     .logo-container img {
@@ -53,10 +102,20 @@ body {
         padding: 10px;
     }
 
+    .icon-container {
+        width: 35px;
+        height: 35px;
+    }
+
     .icon-container i {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .modal-body {
+        padding: 15px;
     }
 }
+
 
     </style>
 </head>
@@ -96,22 +155,22 @@ body {
             </div>
             <div class="modal-body">
                 <!-- KIR Section -->
-                <div class="d-flex align-items-center mb-3">
+                <div class="d-flex">
                     <div class="icon-container me-3">
-                        <i class="fa-solid fa-file-invoice text-primary"></i>
+                        <i class="fa-solid fa-file-invoice"></i>
                     </div>
                     <div>
-                        <p class="mb-1"><b>KIR:</b> Berisi daftar aset & fasilitas di ruangan ini.</p>
+                        <p><b>KIR:</b> Berisi daftar aset & fasilitas di ruangan ini.</p>
                     </div>
                 </div>
 
                 <!-- Perawatan Section -->
-                <div class="d-flex align-items-center">
+                <div class="d-flex">
                     <div class="icon-container me-3">
-                        <i class="fa-solid fa-screwdriver-wrench text-success"></i>
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
                     </div>
                     <div>
-                        <p class="mb-0"><b>Perawatan:</b> Laporkan jika ada fasilitas yang rusak.</p>
+                        <p><b>Perawatan:</b> Laporkan jika ada fasilitas yang rusak.</p>
                     </div>
                 </div>
             </div>
