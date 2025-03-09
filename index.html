@@ -29,7 +29,7 @@
         /* Header */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .logo {
             max-width: 80px;
@@ -39,6 +39,31 @@
             font-size: 18px;
             font-weight: 600;
             color: #007bff;
+        }
+
+        /* Container Dasar Hukum */
+        .info-box {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .info-box h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #007bff;
+            text-align: center;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            text-align: justify;
+            color: #333;
         }
 
         /* Wrapper agar konten tetap di tengah tanpa scroll */
@@ -83,49 +108,6 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Modal Informasi */
-        .info-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 10px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .close-modal {
-            width: 100%;
-            padding: 12px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .close-modal:hover {
-            background: darkred;
-        }
-
     </style>
 </head>
 <body>
@@ -138,21 +120,25 @@
             <p id="roomName" class="room-name">Memuat...</p>
         </div>
 
+        <!-- Dasar Hukum & Pengertian KIR -->
+        <div class="info-box">
+            <h4>Dasar Hukum & Pengertian KIR</h4>
+            <p><strong>📜 Dasar Hukum:</strong> 
+                Berdasarkan <a href="https://bpad.jakarta.go.id/produkhukum/publicfile/hukum/upload/2024/Instruksi%20Sekretaris%20Daerah%20Provinsi%20DKI%20Jakarta%20Nomor%2011%20Tahun%202024%20%28Pelaksanaan%20Inventarisasi%20Barang%20Milik%20Daerah%20Berupa%20Peralatan%20dan%20Mesin%20Pada%20Pengguna%20Barang%20dan%20Kuasa%20Pengguna%20Barang%20TA%202024..pdf" target="_blank">
+                Instruksi Sekretaris Daerah Provinsi DKI Jakarta No. 11 Tahun 2024</a> tentang Pelaksanaan Inventarisasi Barang Milik Daerah dan 
+                <a href="https://dprd-dkijakartaprov.go.id/wp-content/uploads/2022/09/20220922_Raperda-Pengelolaan-BMD-dan-Penjelasan-Notes-clean-version-Folio.pdf" target="_blank">
+                Peraturan Pemerintah No. 28 Tahun 2020</a> tentang Pengelolaan Barang Milik Daerah.
+            </p>
+            <p><strong>📌 Pengertian:</strong> 
+                Kartu Inventaris Ruangan (KIR) adalah dokumen pencatatan aset dalam suatu ruangan untuk memastikan keberadaan dan kondisi barang secara berkala.</p>
+        </div>
+        
+
         <!-- BioLink Buttons -->
         <div class="button-container">
-            <div class="bio-button" onclick="showKIR()">Lihat KIR</div>
-            <div class="bio-button" onclick="openPerawatan()">Ajukan Perawatan</div>
-            <div class="bio-button" onclick="showInfo()">Tentang KIR & Perawatan</div>
-        </div>
-    </div>
-
-    <!-- Modal Informasi -->
-    <div id="infoModal" class="info-modal">
-        <div class="modal-content">
-            <h3>Informasi KIR & Perawatan</h3>
-            <p><strong>✅ KIR:</strong> Kartu Inventaris Ruangan digunakan untuk mencatat aset dan perlengkapannya secara berkala.</p>
-            <p><strong>✅ Perawatan:</strong> Dilakukan secara berkala untuk memastikan kondisi aset tetap baik dan dapat digunakan.</p>
-            <button class="close-modal" onclick="closeInfo()">Tutup</button>
+            <div class="bio-button" onclick="showKIR()">KIR</div>
+            <div class="bio-button" onclick="openPerawatan()">Perawatan</div>
+            <div class="bio-button" onclick="showInfo()">Informasi</div>
         </div>
     </div>
 
@@ -227,14 +213,6 @@
 
         function openPerawatan() {
             window.location.href = "https://docs.google.com/forms/your-form-link";
-        }
-
-        function showInfo() {
-            document.getElementById("infoModal").style.display = "flex";
-        }
-
-        function closeInfo() {
-            document.getElementById("infoModal").style.display = "none";
         }
     </script>
 
