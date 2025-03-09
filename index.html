@@ -86,20 +86,38 @@
             text-align: left;
             position: relative;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .modal-content p {
+            text-align: justify;
         }
 
         .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
+            width: 100%;
+            padding: 12px;
             background: red;
             color: white;
             border: none;
-            padding: 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 14px;
-            border-radius: 5px;
+            margin-top: 15px;
+            transition: all 0.3s ease-in-out;
         }
+
+        .close-modal:hover {
+            background: darkred;
+        }
+
     </style>
 </head>
 <body>
@@ -121,10 +139,10 @@
     <!-- Modal Informasi -->
     <div id="infoModal" class="info-modal">
         <div class="modal-content">
-            <button class="close-modal" onclick="closeInfo()">Tutup</button>
             <h3>Informasi KIR & Perawatan</h3>
             <p><strong>✅ KIR:</strong> Kartu Inventaris Ruangan digunakan untuk mencatat aset dan perlengkapannya secara berkala.</p>
             <p><strong>✅ Perawatan:</strong> Dilakukan secara berkala untuk memastikan kondisi aset tetap baik dan dapat digunakan.</p>
+            <button class="close-modal" onclick="closeInfo()">Tutup</button>
         </div>
     </div>
 
@@ -155,44 +173,44 @@
                     // Jika di ponsel, buka di tab baru
                     window.open(pdfPath, "_blank");
                 } else {
-                    // Jika di desktop, buka di iframe modal
-                    const pdfViewerContainer = document.createElement("div");
-                    pdfViewerContainer.style.position = "fixed";
-                    pdfViewerContainer.style.top = "0";
-                    pdfViewerContainer.style.left = "0";
-                    pdfViewerContainer.style.width = "100vw";
-                    pdfViewerContainer.style.height = "100vh";
-                    pdfViewerContainer.style.background = "rgba(0, 0, 0, 0.9)";
-                    pdfViewerContainer.style.display = "flex";
-                    pdfViewerContainer.style.justifyContent = "center";
-                    pdfViewerContainer.style.alignItems = "center";
-                    pdfViewerContainer.style.zIndex = "9999";
+                    // Jika di desktop, buka di modal rapi
+                    const pdfContainer = document.createElement("div");
+                    pdfContainer.style.position = "fixed";
+                    pdfContainer.style.top = "0";
+                    pdfContainer.style.left = "0";
+                    pdfContainer.style.width = "100vw";
+                    pdfContainer.style.height = "100vh";
+                    pdfContainer.style.background = "rgba(0, 0, 0, 0.9)";
+                    pdfContainer.style.display = "flex";
+                    pdfContainer.style.flexDirection = "column";
+                    pdfContainer.style.justifyContent = "center";
+                    pdfContainer.style.alignItems = "center";
+                    pdfContainer.style.zIndex = "9999";
 
                     const iframe = document.createElement("iframe");
                     iframe.src = pdfPath;
                     iframe.style.width = "90vw";
-                    iframe.style.height = "90vh";
+                    iframe.style.height = "80vh";
                     iframe.style.border = "none";
                     iframe.style.background = "white";
 
                     const closeBtn = document.createElement("button");
                     closeBtn.innerText = "Tutup";
-                    closeBtn.style.position = "absolute";
-                    closeBtn.style.top = "10px";
-                    closeBtn.style.right = "15px";
+                    closeBtn.style.width = "150px";
+                    closeBtn.style.padding = "12px";
                     closeBtn.style.background = "red";
                     closeBtn.style.color = "white";
-                    closeBtn.style.padding = "10px";
                     closeBtn.style.border = "none";
+                    closeBtn.style.borderRadius = "8px";
+                    closeBtn.style.marginTop = "15px";
                     closeBtn.style.cursor = "pointer";
-                    closeBtn.style.borderRadius = "5px";
                     closeBtn.onclick = function () {
-                        document.body.removeChild(pdfViewerContainer);
+                        document.body.removeChild(pdfContainer);
                     };
 
-                    pdfViewerContainer.appendChild(iframe);
-                    pdfViewerContainer.appendChild(closeBtn);
-                    document.body.appendChild(pdfViewerContainer);
+                    pdfContainer.appendChild(iframe);
+                    pdfContainer.appendChild(closeBtn);
+                    document.body.appendChild(pdfContainer);
                 }
             } else {
                 alert("Ruangan tidak ditemukan. Pastikan URL sudah benar!");
