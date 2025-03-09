@@ -42,6 +42,7 @@
             padding: 15px 0;
             position: absolute;
             top: 0;
+            text-align: center;
         }
 
         .logo {
@@ -66,36 +67,36 @@
 
         .card-menu {
             width: 90%;
-            max-width: 280px;
-            min-height: 160px; /* Agar tidak penyok */
+            max-width: 320px;
+            min-height: 150px; /* Agar tidak penyok */
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.2s ease;
-            padding: 15px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            padding: 20px;
         }
 
         .card-menu:hover {
             transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .card-menu i {
-            font-size: 50px;
+            font-size: 55px;
             color: #007bff;
             margin-bottom: 10px;
         }
 
         .card-menu p {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
             color: #333;
             margin: 0;
-            text-align: center;
         }
 
         /* Fullscreen PDF Viewer */
@@ -118,7 +119,7 @@
 
         .pdf-view {
             width: 95vw;
-            height: 95vh;
+            height: 90vh;
             border: none;
             background: white;
             z-index: 1000;
@@ -196,7 +197,7 @@
                 let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
                 if (isMobile) {
-                    pdfViewer.src = `https://docs.google.com/gview?embedded=true&url=${window.location.origin}/${pdfPath}`;
+                    pdfViewer.src = `https://drive.google.com/viewerng/viewer?embedded=true&url=${window.location.origin}/${pdfPath}`;
                 } else {
                     pdfViewer.src = pdfPath;
                 }
