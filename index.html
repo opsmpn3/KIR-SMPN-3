@@ -23,20 +23,40 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            overflow: hidden;
         }
 
         /* Header */
-        .header { text-align: center; margin-bottom: 30px; }
-        .logo { max-width: 80px; margin-bottom: 10px; }
-        .room-name { font-size: 18px; font-weight: 600; color: #007bff; }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            max-width: 80px;
+            margin-bottom: 10px;
+        }
+        .room-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        /* Wrapper agar konten tetap di tengah tanpa scroll */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            width: 100%;
+        }
 
         /* BioLink Buttons */
         .button-container {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            width: 100%;
+            width: 90%;
             max-width: 350px;
         }
 
@@ -83,21 +103,9 @@
             width: 90%;
             max-width: 400px;
             border-radius: 10px;
-            text-align: left;
+            text-align: center;
             position: relative;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .modal-content h3 {
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .modal-content p {
-            text-align: justify;
         }
 
         .close-modal {
@@ -122,18 +130,20 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <div class="header">
-        <img src="assets/logosnega.png" alt="Logo Sekolah" class="logo">
-        <h2>Kartu Inventaris Ruangan</h2>
-        <p id="roomName" class="room-name">Memuat...</p>
-    </div>
+    <div class="content-wrapper">
+        <!-- Header -->
+        <div class="header">
+            <img src="assets/logosnega.png" alt="Logo Sekolah" class="logo">
+            <h2>Kartu Inventaris Ruangan</h2>
+            <p id="roomName" class="room-name">Memuat...</p>
+        </div>
 
-    <!-- BioLink Buttons -->
-    <div class="button-container">
-        <div class="bio-button" onclick="showKIR()">Lihat KIR</div>
-        <div class="bio-button" onclick="openPerawatan()">Ajukan Perawatan</div>
-        <div class="bio-button" onclick="showInfo()">Tentang KIR & Perawatan</div>
+        <!-- BioLink Buttons -->
+        <div class="button-container">
+            <div class="bio-button" onclick="showKIR()">Lihat KIR</div>
+            <div class="bio-button" onclick="openPerawatan()">Ajukan Perawatan</div>
+            <div class="bio-button" onclick="showInfo()">Tentang KIR & Perawatan</div>
+        </div>
     </div>
 
     <!-- Modal Informasi -->
@@ -170,10 +180,8 @@
                 let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
                 if (isMobile) {
-                    // Jika di ponsel, buka di tab baru
                     window.open(pdfPath, "_blank");
                 } else {
-                    // Jika di desktop, buka di modal rapi
                     const pdfContainer = document.createElement("div");
                     pdfContainer.style.position = "fixed";
                     pdfContainer.style.top = "0";
