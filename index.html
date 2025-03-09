@@ -191,12 +191,11 @@
             const pdfViewer = document.getElementById("pdfViewer");
 
             if (ruangan) {
-                let pdfPath = `pdf/${ruangan}.pdf`;
-                let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+                let pdfPath = `${window.location.origin}/pdf/${ruangan}.pdf`;
 
-                // Tampilan Google Drive View File
-                pdfViewer.src = `https://drive.google.com/viewerng/viewer?embedded=true&url=${window.location.origin}/${pdfPath}`;
-                
+                // Coba tampilkan PDF langsung (tanpa Google Drive Viewer)
+                pdfViewer.src = pdfPath;
+
                 pdfContainer.classList.add("active");
                 document.body.style.overflow = "hidden";
             } else {
@@ -224,3 +223,4 @@
 
 </body>
 </html>
+
