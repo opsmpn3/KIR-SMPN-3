@@ -27,7 +27,6 @@
             background-color: #f4f7fc;
             text-align: center;
             height: 100vh;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -55,48 +54,50 @@
             margin-top: 8px;
         }
 
-        /* Menu Cards */
-        .menu-container {
+        /* BioLink Style Buttons */
+        .button-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 15px;
-            margin-top: 120px;
-            width: 100%;
+            width: 90%;
+            max-width: 350px;
+            margin-top: 100px;
         }
 
-        .card-menu {
-            width: 90%;
-            max-width: 320px;
-            min-height: 150px; /* Agar tidak penyok */
+        .bio-button {
+            width: 100%;
             background: white;
-            border-radius: 12px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            padding: 20px;
+            gap: 12px;
+            border: 2px solid transparent;
         }
 
-        .card-menu:hover {
-            transform: scale(1.05);
+        .bio-button:hover {
+            transform: translateY(-2px);
+            background: #007bff;
+            color: white;
+            border-color: #0056b3;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .card-menu i {
-            font-size: 55px;
-            color: #007bff;
-            margin-bottom: 10px;
+        .bio-button i {
+            font-size: 22px;
+            transition: transform 0.3s ease;
         }
 
-        .card-menu p {
-            font-size: 17px;
-            font-weight: bold;
-            color: #333;
-            margin: 0;
+        .bio-button:hover i {
+            transform: scale(1.2);
         }
 
         /* Fullscreen PDF Viewer */
@@ -149,21 +150,18 @@
         <p id="roomName" class="room-name">Memuat...</p>
     </header>
 
-    <!-- Menu Cards -->
-    <main class="menu-container">
-        <div class="card-menu" onclick="showKIR()">
-            <i class="fas fa-file-pdf"></i>
-            <p>KIR</p>
+    <!-- BioLink Buttons -->
+    <div class="button-container">
+        <div class="bio-button" onclick="showKIR()">
+            <i class="fas fa-file-pdf"></i> <span>KIR</span>
         </div>
-        <div class="card-menu" onclick="openPerawatan()">
-            <i class="fas fa-tools"></i>
-            <p>Perawatan</p>
+        <div class="bio-button" onclick="openPerawatan()">
+            <i class="fas fa-tools"></i> <span>Perawatan</span>
         </div>
-        <div class="card-menu" onclick="showInfo()">
-            <i class="fas fa-info-circle"></i>
-            <p>Informasi</p>
+        <div class="bio-button" onclick="showInfo()">
+            <i class="fas fa-info-circle"></i> <span>Informasi</span>
         </div>
-    </main>
+    </div>
 
     <!-- Fullscreen PDF Viewer -->
     <div id="pdfViewerContainer" class="pdf-container">
@@ -196,12 +194,9 @@
                 let pdfPath = `pdf/${ruangan}.pdf`;
                 let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
-                if (isMobile) {
-                    pdfViewer.src = `https://drive.google.com/viewerng/viewer?embedded=true&url=${window.location.origin}/${pdfPath}`;
-                } else {
-                    pdfViewer.src = pdfPath;
-                }
-
+                // Tampilan Google Drive View File
+                pdfViewer.src = `https://drive.google.com/viewerng/viewer?embedded=true&url=${window.location.origin}/${pdfPath}`;
+                
                 pdfContainer.classList.add("active");
                 document.body.style.overflow = "hidden";
             } else {
