@@ -10,9 +10,6 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         /* Reset */
@@ -31,27 +28,24 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         /* Header */
         .header {
-            background: #007bff;
-            color: white;
-            width: 100%;
-            padding: 15px 0;
-            position: absolute;
-            top: 0;
             text-align: center;
+            margin-bottom: 30px;
         }
 
         .logo {
-            max-width: 70px;
+            max-width: 80px;
+            margin-bottom: 10px;
         }
 
         .room-name {
             font-size: 18px;
             font-weight: 600;
-            margin-top: 8px;
+            color: #007bff;
         }
 
         /* BioLink Style Buttons */
@@ -59,9 +53,8 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            width: 90%;
+            width: 100%;
             max-width: 350px;
-            margin-top: 100px;
         }
 
         .bio-button {
@@ -76,28 +69,15 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: all 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
             border: 2px solid transparent;
         }
 
         .bio-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             background: #007bff;
             color: white;
             border-color: #0056b3;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .bio-button i {
-            font-size: 22px;
-            transition: transform 0.3s ease;
-        }
-
-        .bio-button:hover i {
-            transform: scale(1.2);
         }
 
         /* Fullscreen PDF Viewer */
@@ -127,7 +107,7 @@
         }
 
         /* Tombol Tutup */
-        .close-pdf {
+        .close-pdf, .close-modal {
             position: absolute;
             top: 10px;
             right: 15px;
@@ -139,34 +119,64 @@
             font-size: 14px;
             border-radius: 5px;
         }
+
+        /* Modal Informasi */
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
     </style>
 </head>
 <body>
 
     <!-- Header -->
-    <header class="header">
+    <div class="header">
         <img src="assets/logosnega.png" alt="Logo Sekolah" class="logo">
-        <h2 class="mt-2">Kartu Inventaris Ruangan</h2>
+        <h2>Kartu Inventaris Ruangan</h2>
         <p id="roomName" class="room-name">Memuat...</p>
-    </header>
+    </div>
 
     <!-- BioLink Buttons -->
     <div class="button-container">
-        <div class="bio-button" onclick="showKIR()">
-            <i class="fas fa-file-pdf"></i> <span>KIR</span>
-        </div>
-        <div class="bio-button" onclick="openPerawatan()">
-            <i class="fas fa-tools"></i> <span>Perawatan</span>
-        </div>
-        <div class="bio-button" onclick="showInfo()">
-            <i class="fas fa-info-circle"></i> <span>Informasi</span>
-        </div>
+        <div class="bio-button" onclick="showKIR()">Lihat KIR</div>
+        <div class="bio-button" onclick="openPerawatan()">Ajukan Perawatan</div>
+        <div class="bio-button" onclick="showInfo()">Tentang KIR & Perawatan</div>
     </div>
 
     <!-- Fullscreen PDF Viewer -->
     <div id="pdfViewerContainer" class="pdf-container">
         <button class="close-pdf" onclick="closePDF()">Tutup</button>
         <iframe id="pdfViewer" class="pdf-view"></iframe>
+    </div>
+
+    <!-- Modal Informasi -->
+    <div id="infoModal" class="info-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeInfo()">Tutup</button>
+            <h3>Informasi KIR & Perawatan</h3>
+            <p><strong>✅ KIR:</strong> Kartu Inventaris Ruangan digunakan untuk mencatat aset dan perlengkapannya secara berkala.</p>
+            <p><strong>✅ Perawatan:</strong> Dilakukan secara berkala untuk memastikan kondisi aset tetap baik dan dapat digunakan.</p>
+        </div>
     </div>
 
     <!-- Bootstrap JavaScript -->
@@ -191,9 +201,7 @@
             const pdfViewer = document.getElementById("pdfViewer");
 
             if (ruangan) {
-                let pdfPath = `${window.location.origin}/pdf/${ruangan}.pdf`;
-
-                // Coba tampilkan PDF langsung (tanpa Google Drive Viewer)
+                let pdfPath = `pdf/${ruangan}.pdf`;
                 pdfViewer.src = pdfPath;
 
                 pdfContainer.classList.add("active");
@@ -204,11 +212,8 @@
         }
 
         function closePDF() {
-            const pdfContainer = document.getElementById("pdfViewerContainer");
-            const pdfViewer = document.getElementById("pdfViewer");
-
-            pdfContainer.classList.remove("active");
-            pdfViewer.src = "";
+            document.getElementById("pdfViewerContainer").classList.remove("active");
+            document.getElementById("pdfViewer").src = "";
             document.body.style.overflow = "auto";
         }
 
@@ -217,9 +222,14 @@
         }
 
         function showInfo() {
-            alert("✅ KIR: Pemeriksaan berkala aset.\n✅ Perawatan: Menjaga aset agar tetap baik.");
+            document.getElementById("infoModal").style.display = "flex";
+        }
+
+        function closeInfo() {
+            document.getElementById("infoModal").style.display = "none";
         }
     </script>
 
 </body>
 </html>
+
