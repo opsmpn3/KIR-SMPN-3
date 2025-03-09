@@ -12,12 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html, body {
             font-family: 'Poppins', sans-serif;
@@ -32,23 +27,11 @@
         }
 
         /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo { max-width: 80px; margin-bottom: 10px; }
+        .room-name { font-size: 18px; font-weight: 600; color: #007bff; }
 
-        .logo {
-            max-width: 80px;
-            margin-bottom: 10px;
-        }
-
-        .room-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #007bff;
-        }
-
-        /* BioLink Style Buttons */
+        /* BioLink Buttons */
         .button-container {
             display: flex;
             flex-direction: column;
@@ -80,46 +63,6 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Fullscreen PDF Viewer */
-        .pdf-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .pdf-container.active {
-            display: flex;
-        }
-
-        .pdf-view {
-            width: 95vw;
-            height: 90vh;
-            border: none;
-            background: white;
-            z-index: 1000;
-        }
-
-        /* Tombol Tutup */
-        .close-pdf, .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: red;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            border-radius: 5px;
-        }
-
         /* Modal Informasi */
         .info-modal {
             display: none;
@@ -145,6 +88,18 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -161,12 +116,6 @@
         <div class="bio-button" onclick="showKIR()">Lihat KIR</div>
         <div class="bio-button" onclick="openPerawatan()">Ajukan Perawatan</div>
         <div class="bio-button" onclick="showInfo()">Tentang KIR & Perawatan</div>
-    </div>
-
-    <!-- Fullscreen PDF Viewer -->
-    <div id="pdfViewerContainer" class="pdf-container">
-        <button class="close-pdf" onclick="closePDF()">Tutup</button>
-        <iframe id="pdfViewer" class="pdf-view"></iframe>
     </div>
 
     <!-- Modal Informasi -->
@@ -197,24 +146,57 @@
 
         function showKIR() {
             const ruangan = sessionStorage.getItem("ruangan");
-            const pdfContainer = document.getElementById("pdfViewerContainer");
-            const pdfViewer = document.getElementById("pdfViewer");
 
             if (ruangan) {
                 let pdfPath = `pdf/${ruangan}.pdf`;
-                pdfViewer.src = pdfPath;
+                let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
-                pdfContainer.classList.add("active");
-                document.body.style.overflow = "hidden";
+                if (isMobile) {
+                    // Jika di ponsel, buka di tab baru
+                    window.open(pdfPath, "_blank");
+                } else {
+                    // Jika di desktop, buka di iframe modal
+                    const pdfViewerContainer = document.createElement("div");
+                    pdfViewerContainer.style.position = "fixed";
+                    pdfViewerContainer.style.top = "0";
+                    pdfViewerContainer.style.left = "0";
+                    pdfViewerContainer.style.width = "100vw";
+                    pdfViewerContainer.style.height = "100vh";
+                    pdfViewerContainer.style.background = "rgba(0, 0, 0, 0.9)";
+                    pdfViewerContainer.style.display = "flex";
+                    pdfViewerContainer.style.justifyContent = "center";
+                    pdfViewerContainer.style.alignItems = "center";
+                    pdfViewerContainer.style.zIndex = "9999";
+
+                    const iframe = document.createElement("iframe");
+                    iframe.src = pdfPath;
+                    iframe.style.width = "90vw";
+                    iframe.style.height = "90vh";
+                    iframe.style.border = "none";
+                    iframe.style.background = "white";
+
+                    const closeBtn = document.createElement("button");
+                    closeBtn.innerText = "Tutup";
+                    closeBtn.style.position = "absolute";
+                    closeBtn.style.top = "10px";
+                    closeBtn.style.right = "15px";
+                    closeBtn.style.background = "red";
+                    closeBtn.style.color = "white";
+                    closeBtn.style.padding = "10px";
+                    closeBtn.style.border = "none";
+                    closeBtn.style.cursor = "pointer";
+                    closeBtn.style.borderRadius = "5px";
+                    closeBtn.onclick = function () {
+                        document.body.removeChild(pdfViewerContainer);
+                    };
+
+                    pdfViewerContainer.appendChild(iframe);
+                    pdfViewerContainer.appendChild(closeBtn);
+                    document.body.appendChild(pdfViewerContainer);
+                }
             } else {
                 alert("Ruangan tidak ditemukan. Pastikan URL sudah benar!");
             }
-        }
-
-        function closePDF() {
-            document.getElementById("pdfViewerContainer").classList.remove("active");
-            document.getElementById("pdfViewer").src = "";
-            document.body.style.overflow = "auto";
         }
 
         function openPerawatan() {
@@ -232,4 +214,3 @@
 
 </body>
 </html>
-
