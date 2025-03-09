@@ -3,19 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Ruangan</title>
-    <link rel="stylesheet" href="style.css">
+    <title>KIR & Perawatan Aset</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+        }
+
+        .logo {
+            max-width: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Navigasi */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav button {
+            border: none;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        nav button:hover {
+            background-color: #0056b3;
+        }
+
+        /* PDF Container */
+        .pdf-container {
+            display: none;
+            width: 100%;
+            height: 500px;
+            margin-top: 10px;
+            border: none;
+        }
+
+        /* Modal Informasi */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            width: 80%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            padding: 8px;
+            border: none;
+            background: red;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="room-name">Ruangan Tidak Dikenal</h1>
-    <button id="kir-btn">Lihat KIR</button>
-    <button id="maintenance-btn">Perawatan</button>
 
-    <!-- Area untuk menampilkan PDF -->
-    <div id="pdf-container" style="display: none;">
-        <iframe id="pdf-viewer" width="80%" height="500px"></iframe>
+    <!-- Header -->
+    <header>
+        <img src="assets/logo.png" alt="Logo Sekolah" class="logo">
+        <h1>KIR & Perawatan Aset</h1>
+    </header>
+
+    <!-- Menu Navigasi -->
+    <nav>
+        <button onclick="showKIR()">KIR</button>
+        <button onclick="openPerawatan()">Perawatan</button>
+        <button onclick="showInfo()">Informasi</button>
+    </nav>
+
+    <!-- Tempat PDF -->
+    <iframe id="pdfViewer" class="pdf-container"></iframe>
+
+    <!-- Modal Informasi -->
+    <div class="modal-overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <h3>Informasi KIR & Perawatan</h3>
+        <p>
+            ✅ **KIR** adalah pemeriksaan berkala untuk memastikan kondisi aset.<br>
+            ✅ **Perawatan** bertujuan untuk menjaga aset agar tetap dalam kondisi baik.
+        </p>
+        <button class="close-btn" onclick="closeModal()">Tutup</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ruangan = urlParams.get("ruangan");
+
+            if (ruangan) {
+                let pdfPath = `pdf/${ruangan}.pdf`; // File PDF sesuai ruangan
+                let pdfViewer = document.getElementById("pdfViewer");
+                pdfViewer.src = pdfPath;
+                pdfViewer.style.display = "block";
+            }
+        });
+
+        function showKIR() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ruangan = urlParams.get("ruangan");
+
+            if (ruangan) {
+                let pdfPath = `pdf/${ruangan}.pdf`;
+                let pdfViewer = document.getElementById("pdfViewer");
+                pdfViewer.src = pdfPath;
+                pdfViewer.style.display = "block";
+            } else {
+                alert("Ruangan tidak ditemukan. Pastikan URL sudah benar!");
+            }
+        }
+
+        function openPerawatan() {
+            window.location.href = "https://docs.google.com/forms/your-form-link"; // Ganti dengan Google Form Anda
+        }
+
+        function showInfo() {
+            document.getElementById('modal').style.display = "block";
+            document.getElementById('overlay').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = "none";
+            document.getElementById('overlay').style.display = "none";
+        }
+    </script>
+
 </body>
 </html>
