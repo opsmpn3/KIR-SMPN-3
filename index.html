@@ -15,25 +15,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        body {
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7fc;
             text-align: center;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Fullscreen Mode */
+        /* Header */
         .header {
             background: #007bff;
             color: white;
+            width: 100%;
             padding: 15px 0;
+            position: absolute;
+            top: 0;
         }
 
         .logo {
-            max-width: 80px;
+            max-width: 70px;
         }
 
-        /* Nama Ruangan */
         .room-name {
             font-size: 18px;
             font-weight: 600;
@@ -46,13 +60,13 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            margin: 20px 0;
+            margin-top: 120px;
         }
 
         .card-menu {
             width: 90%;
-            max-width: 300px;
-            height: 160px;
+            max-width: 280px;
+            height: 150px;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -88,7 +102,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             z-index: 999;
@@ -99,7 +113,7 @@
         }
 
         .pdf-view {
-            width: 95vw;
+            width: 90vw;
             height: 85vh;
             border: none;
             background: white;
@@ -120,7 +134,7 @@
             border-radius: 5px;
         }
 
-        /* Swipe Down Gesture */
+        /* Swipe Indicator */
         .swipe-indicator {
             position: absolute;
             top: 10px;
@@ -131,7 +145,6 @@
             background: white;
             border-radius: 5px;
         }
-
     </style>
 </head>
 <body>
@@ -184,33 +197,28 @@
 
         function showKIR() {
             const ruangan = sessionStorage.getItem("ruangan");
-            const pdfContainer = document.getElementById("pdfViewerContainer");
-            const pdfViewer = document.getElementById("pdfViewer");
 
             if (ruangan) {
-                pdfViewer.src = `pdf/${ruangan}.pdf`;
-                pdfContainer.classList.add("active");
-                document.body.style.overflow = "hidden";
-                history.pushState(null, null, "#pdf"); // Menambahkan hash agar tombol back bisa dipakai
+                let pdfPath = `pdf/${ruangan}.pdf`;
+                let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+
+                if (isMobile) {
+                    window.open(`https://docs.google.com/gview?embedded=true&url=${window.location.origin}/${pdfPath}`, "_blank");
+                } else {
+                    document.getElementById("pdfViewer").src = pdfPath;
+                    document.getElementById("pdfViewerContainer").classList.add("active");
+                    document.body.style.overflow = "hidden";
+                }
             } else {
                 alert("Ruangan tidak ditemukan. Pastikan URL sudah benar!");
             }
         }
 
         function closePDF() {
-            const pdfContainer = document.getElementById("pdfViewerContainer");
-            pdfContainer.classList.remove("active");
+            document.getElementById("pdfViewerContainer").classList.remove("active");
             document.getElementById("pdfViewer").src = "";
             document.body.style.overflow = "auto";
-            history.back(); // Kembali ke halaman utama tanpa refresh
         }
-
-        // Deteksi tombol "Back" di ponsel untuk menutup modal
-        window.addEventListener("popstate", function () {
-            if (document.getElementById("pdfViewerContainer").classList.contains("active")) {
-                closePDF();
-            }
-        });
 
         function openPerawatan() {
             window.location.href = "https://docs.google.com/forms/your-form-link";
