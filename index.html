@@ -61,12 +61,13 @@
             align-items: center;
             gap: 15px;
             margin-top: 120px;
+            width: 100%;
         }
 
         .card-menu {
             width: 90%;
             max-width: 280px;
-            height: 150px;
+            min-height: 160px; /* Agar tidak penyok */
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -76,6 +77,7 @@
             justify-content: center;
             cursor: pointer;
             transition: transform 0.2s ease;
+            padding: 15px;
         }
 
         .card-menu:hover {
@@ -92,6 +94,8 @@
             font-size: 16px;
             font-weight: bold;
             color: #333;
+            margin: 0;
+            text-align: center;
         }
 
         /* Fullscreen PDF Viewer */
@@ -113,8 +117,8 @@
         }
 
         .pdf-view {
-            width: 90vw;
-            height: 85vh;
+            width: 95vw;
+            height: 95vh;
             border: none;
             background: white;
             z-index: 1000;
@@ -123,7 +127,7 @@
         /* Tombol Tutup */
         .close-pdf {
             position: absolute;
-            top: 15px;
+            top: 10px;
             right: 15px;
             background: red;
             color: white;
@@ -131,18 +135,6 @@
             padding: 10px;
             cursor: pointer;
             font-size: 14px;
-            border-radius: 5px;
-        }
-
-        /* Swipe Indicator */
-        .swipe-indicator {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 5px;
-            background: white;
             border-radius: 5px;
         }
     </style>
@@ -174,7 +166,6 @@
 
     <!-- Fullscreen PDF Viewer -->
     <div id="pdfViewerContainer" class="pdf-container">
-        <div class="swipe-indicator"></div>
         <button class="close-pdf" onclick="closePDF()">Tutup</button>
         <iframe id="pdfViewer" class="pdf-view"></iframe>
     </div>
@@ -197,26 +188,32 @@
 
         function showKIR() {
             const ruangan = sessionStorage.getItem("ruangan");
+            const pdfContainer = document.getElementById("pdfViewerContainer");
+            const pdfViewer = document.getElementById("pdfViewer");
 
             if (ruangan) {
                 let pdfPath = `pdf/${ruangan}.pdf`;
                 let isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
                 if (isMobile) {
-                    window.open(`https://docs.google.com/gview?embedded=true&url=${window.location.origin}/${pdfPath}`, "_blank");
+                    pdfViewer.src = `https://docs.google.com/gview?embedded=true&url=${window.location.origin}/${pdfPath}`;
                 } else {
-                    document.getElementById("pdfViewer").src = pdfPath;
-                    document.getElementById("pdfViewerContainer").classList.add("active");
-                    document.body.style.overflow = "hidden";
+                    pdfViewer.src = pdfPath;
                 }
+
+                pdfContainer.classList.add("active");
+                document.body.style.overflow = "hidden";
             } else {
                 alert("Ruangan tidak ditemukan. Pastikan URL sudah benar!");
             }
         }
 
         function closePDF() {
-            document.getElementById("pdfViewerContainer").classList.remove("active");
-            document.getElementById("pdfViewer").src = "";
+            const pdfContainer = document.getElementById("pdfViewerContainer");
+            const pdfViewer = document.getElementById("pdfViewer");
+
+            pdfContainer.classList.remove("active");
+            pdfViewer.src = "";
             document.body.style.overflow = "auto";
         }
 
